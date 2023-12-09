@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <title>A-Frame Scene with Model and Text</title>
+</head>
+<body>
+    <a-scene>
+        <!-- 3D Model -->
+        <a-obj-model src="diamond.obj" mtl="diamond.mtl" position="0 0 -5" scale="1 1 1"></a-obj-model>
+
+        <!-- Text -->
+        <a-text value="Your Text Here" position="0 0 -5" align="center" color="#ffffff" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"></a-text>
+
+        <!-- Environment -->
+        <a-sky color="#4E78A0"></a-sky>
+    </a-scene>
+</body>
+</html>

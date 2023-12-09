@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <title>Домашнє завдання №1</title>
+</head>
+<body>
+    <a-scene background="color: #4E78A0; radial-gradient: #1B325F, #4E78A0;">
+        <!-- Central Cylinder -->
+        <a-cylinder position="0 0.5 -5" radius="0.25" height="2" color="#e74c3c" animation__move="property: position; dir: reverse; dur: 6000;  to: 0 4 -5; loop: false"></a-cylinder>
+
+        <!-- Tori (Donuts) for the Pyramid -->
+        <a-torus position="0 0 -5" radius="1" radius-tubular="0.1" rotation="90 0 0"color="#9b59b6" animation__move="property: position; dir: reverse; dur: 6000;  to: 0 4 -5; loop: false"></a-torus>
+        <a-torus position="0 0.35 -5" radius="0.8" radius-tubular="0.1" rotation="90 0 0" color="#3498db" animation__move="property: position; dir: reverse; dur: 6000;  to: 0 4.5 -5; loop: false"></a-torus>
+        <a-torus position="0 0.65 -5" radius="0.6" radius-tubular="0.1" rotation="90 0 0" color="#2ecc71" animation__move="property: position; dir: reverse; dur: 6000;  to: 0 5 -5; loop: false"></a-torus>
+        <a-torus position="0 0.95 -5" radius="0.4" radius-tubular="0.1" rotation="90 0 0" color="#f39c12" animation__move="property: position; dir: reverse; dur: 6000;  to: 0 5.5 -5; loop: false"></a-torus>
+        
+    </a-scene>
+</body>
+</html>
