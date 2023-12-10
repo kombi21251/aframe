@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <title>A-Frame Scene with Model and Text</title>
+    <title>Домашнє завдання №2</title>
 </head>
 <body>
     <a-scene>
         <!-- 3D Model -->
-        <a-obj-model src="Charging_Bull_Statue_of_Wall_Street.obj" mtl="Charging_Bull_Statue_of_Wall_Street.mtl" position="0 0 -5" scale="1 1 1"></a-obj-model>
+        <a-obj-model src="Charging_Bull_Statue_of_Wall_Street.obj" mtl="Charging_Bull_Statue_of_Wall_Street.mtl" position="0 1 -5" rotation="270 125 180" scale="0.005 0.005 0.005" animation__move="property: rotation; dur: 18000;  to: 270 485 180; loop: true; easing: linear"></a-obj-model>
 
         <!-- Text -->
-        <a-text value="Your Text Here" position="0 0 -5" align="center" color="#ffffff" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"></a-text>
+        <a-text value="Бик з Уолл-стріт або бик Боулінг-Грін" position="0 0 -5" align="center" color="#ffffff" font="KyivTypeSans-Heavy-msdf.json"  negate="false"></a-text>
 
         <!-- Environment -->
-        <a-sky color="#4E78A0"></a-sky>
+        <a-sky color="#0A68A0"></a-sky>
     </a-scene>
 </body>
 </html>
