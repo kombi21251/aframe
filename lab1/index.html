@@ -1,0 +1,438 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<title>Minecraft WebVR Website Experience A-Frame</title>
+<meta name="author" content="Donovan Kraeker">
+<meta name="description" content="A Minecraft Inspired WebVR virtual reality example website experience using A-Frame designed by Donovan Kraeker">
+<script async="" src="js/analytics.js"></script><script src="js/aframe.min.js"></script>
+</head>
+<body>  
+ <a-assets>
+  <a-mixin id="box" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard"></a-mixin>
+  <a-mixin id="log" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/wood-log.png);"></a-mixin>
+  <a-mixin id="leaves" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/leaves.png);"></a-mixin>
+  <a-mixin id="sand" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/sand.png);"></a-mixin>
+  <a-mixin id="cobblestone" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/cobblestone.png);"></a-mixin>
+  <a-mixin id="plank" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/wooden-plank.png);"></a-mixin>
+  <a-mixin id="post" geometry="primitive: box; depth: 0.5; height: 2; width: 0.5" material="shader: standard; src: url(images/fence-post.png)"></a-mixin>
+ </a-assets>
+    
+<a-scene fog="type: linear; color: #90b7ee; far: 220; near: 0;">
+ <a-entity camera="" position="0 2.2 4" look-controls="enabled: true" cursor-visible="enabled: false" wasd-controls="enabled: true" sound="src: minecraft.mp3; autoplay: true"></a-entity>
+
+<!-- Sun -->
+<a-entity geometry=" primitive: plane; height: 9; width: 9" position="20 55 -50" material="shader: standard; transparent: true; side: double; true; src: url(images/sun.png)">
+ <a-animation attribute="position" from="20 20 -40" to="20 20 220" easing="linear" begin="200" dur="2000000"></a-animation>
+</a-entity>
+  
+<!-- Clouds -->
+<a-entity geometry="primitive: box; depth: 3; height: 1; width: 2" position="-25 20 10" material="shader: standard; opacity: 0.8; color: #fff">
+  <a-animation attribute="position" from="-25 20 10" to="20 10 230" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 5; height: 1; width: 2" position="-40 20 -30" material="shader: standard; opacity: 0.8; color: #fff">
+  <a-animation attribute="position" from="-40 20 -30" to="-40 10 210" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 3; height: 1; width: 2" position="-10 20 -50" material="shader: standard; opacity: 0.8; color: #fff"> 
+ <a-animation attribute="position" from="-10 20 -50" to="-10 10 190" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 5; height: 1; width: 2" position="-20 20 -35" material="shader: standard; opacity: 0.8; color: #fff"> 
+ <a-animation attribute="position" from="-20 20 -35" to="-20 10 205" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 5; height: 1; width: 2" position="-10 20 -20" material="shader: standard; opacity: 0.8; color: #fff"> 
+ <a-animation attribute="position" from="-10 20 -20" to="-10 10 220" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 3; height: 1; width: 2" position="-12 20 -20" material="shader: standard; opacity: 0.8; color: #fff"> 
+ <a-animation attribute="position" from="-12 20 -20" to="-12 10 220" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 5; height: 1; width: 2" position="0 20 -10" material="shader: standard; opacity: 0.8; color: #fff"> 
+ <a-animation attribute="position" from="0 20 -10" to="0 10 230" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>
+
+<a-entity geometry="primitive: box; depth: 2; height: 1; width: 2" position="-28 20 -10" material="shader: standard; opacity: 0.8; color: #fff"> 
+ <a-animation attribute="position" from="-28 20 -10" to="-28 10 240" easing="linear" begin="200" dur="1000000"></a-animation></a-entity>        
+
+<!-- Front Wall-->
+<a-entity mixin="plank" position="0 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="2 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="4 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="6 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="8 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="10 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="10 0.5 -14"></a-entity>
+<a-entity mixin="plank" position="-2 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="-6 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="-8 0.5 -12"></a-entity>
+<a-entity mixin="plank" position="-10 0.5 -12"></a-entity>
+<!-- Right Wall-->
+<a-entity mixin="plank" position="10 0.5 -14"></a-entity>
+<a-entity mixin="plank" position="10 0.5 -16"></a-entity>
+<a-entity mixin="plank" position="10 0.5 -18"></a-entity>
+<a-entity mixin="plank" position="10 0.5 -20"></a-entity>
+<a-entity mixin="plank" position="10 0.5 -22"></a-entity>
+<!-- Left Wall-->
+<a-entity mixin="plank" position="-10 0.5 -14"></a-entity>
+<a-entity mixin="plank" position="-10 0.5 -16"></a-entity>
+<a-entity mixin="plank" position="-10 0.5 -18"></a-entity>
+<a-entity mixin="plank" position="-10 0.5 -20"></a-entity>
+<a-entity mixin="plank" position="-10 0.5 -22"></a-entity>
+<!-- Back Wall-->
+<a-entity mixin="plank" position="-8 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="-6 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="-4 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="-2 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="0 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="2 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="4 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="6 0.5 -22"></a-entity>
+<a-entity mixin="plank" position="8 0.5 -22"></a-entity>
+<!-- Inside Wall-->
+<a-entity mixin="plank" position="2 0.5 -20"></a-entity>
+<a-entity mixin="plank" position="2 0.5 -18"></a-entity>
+<a-entity mixin="plank" position="2 0.5 -14"></a-entity>
+<!-- Front Wall 2-->
+<a-entity mixin="plank" position="0 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="2 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="4 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="8 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="10 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="10 2.5 -14"></a-entity>
+<a-entity mixin="plank" position="-2 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="-6 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="-8 2.5 -12"></a-entity>
+<a-entity mixin="plank" position="-10 2.5 -12"></a-entity>
+<!-- Right Wall 2-->
+<a-entity mixin="plank" position="10 2.5 -14"></a-entity>
+<a-entity mixin="plank" position="10 2.5 -20"></a-entity>
+<a-entity mixin="plank" position="10 2.5 -22"></a-entity>
+<!-- Left Wall 2-->
+<a-entity mixin="plank" position="-10 2.5 -14"></a-entity>
+<a-entity mixin="plank" position="-10 2.5 -20"></a-entity>
+<a-entity mixin="plank" position="-10 2.5 -22"></a-entity>
+<!-- Back Wall 2-->
+<a-entity mixin="plank" position="-8 2.5 -22"></a-entity>
+<a-entity mixin="plank" position="-6 2.5 -22"></a-entity>
+<a-entity mixin="plank" position="-2 2.5 -22"></a-entity>
+<a-entity mixin="plank" position="0 2.5 -22"></a-entity>
+<a-entity mixin="plank" position="2 2.5 -22"></a-entity>
+<a-entity mixin="plank" position="4 2.5 -22"></a-entity>
+<a-entity mixin="plank" position="8 2.5 -22"></a-entity>
+<!-- Inside Wall 2-->
+<a-entity mixin="plank" position="2 2.5 -20"></a-entity>
+<a-entity mixin="plank" position="2 2.5 -18"></a-entity>
+<a-entity mixin="plank" position="2 2.5 -14"></a-entity>
+<!-- Front Wall 3-->
+<a-entity mixin="plank" position="0 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="2 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="4 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="6 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="8 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="-2 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -12"></a-entity>
+
+<a-entity mixin="plank" position="-2 4.5 -10"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -10"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -10"></a-entity>
+
+<a-entity mixin="plank" position="-8 4.5 -12"></a-entity>
+<a-entity mixin="plank" position="-10 4.5 -12"></a-entity>
+<!-- Right Wall 3-->
+<a-entity mixin="plank" position="10 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -22"></a-entity>
+<!-- Left Wall 3-->
+<a-entity mixin="plank" position="-10 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="-10 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="-10 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="-10 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="-10 4.5 -22"></a-entity>
+<!-- Back Wall 3-->
+<a-entity mixin="plank" position="-8 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="-2 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="0 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="2 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="4 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="6 4.5 -22"></a-entity>
+<a-entity mixin="plank" position="8 4.5 -22"></a-entity>
+<!-- Inside Wall 3-->
+<a-entity mixin="plank" position="2 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="2 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="2 4.5 -14"></a-entity>
+<!-- Roof-->
+<a-entity mixin="plank" position="-8 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="-2 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="0 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="4 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="6 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="8 4.5 -20"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -20"></a-entity>
+
+<a-entity mixin="plank" position="-8 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="-2 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="0 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="4 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="6 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="8 4.5 -18"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -18"></a-entity>
+
+<a-entity mixin="plank" position="-8 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="-2 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="0 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="2 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="4 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="6 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="8 4.5 -16"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -16"></a-entity>
+
+<a-entity mixin="plank" position="-8 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="-6 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="-2 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="0 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="2 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="4 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="6 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="8 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="10 4.5 -14"></a-entity>
+<a-entity mixin="plank" position="-4 4.5 -12"></a-entity>
+
+<!-- Right Trees -->
+<a-entity mixin="leaves" position="20 8.5 -4"></a-entity>
+<a-entity mixin="leaves" position="20 6.5 -2"></a-entity>
+<a-entity mixin="leaves" position="20 6.5 -6"></a-entity>
+<a-entity mixin="leaves" position="18 6.5 -4"></a-entity>
+<a-entity mixin="leaves" position="22 6.5 -4"></a-entity>
+<a-entity mixin="leaves" position="16 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="18 4.5 -6"></a-entity>
+<a-entity mixin="leaves" position="20 4.5 0"></a-entity>
+<a-entity mixin="leaves" position="18 4.5 -2"></a-entity>
+<a-entity mixin="leaves" position="18 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="22 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="20 4.5 -6"></a-entity>
+<a-entity mixin="leaves" position="22 4.5 -2"></a-entity>
+<a-entity mixin="leaves" position="24 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="22 4.5 -6"></a-entity>
+<a-entity mixin="leaves" position="20 4.5 -8"></a-entity>
+<a-entity mixin="leaves" position="20 4.5 -2"></a-entity>
+<a-entity mixin="log" position="20 0.5 -4"></a-entity>
+<a-entity mixin="log" position="20 2.5 -4"></a-entity>
+<a-entity mixin="log" position="20 4.5 -4"></a-entity>
+
+<a-entity mixin="leaves" position="22 4.5 -18"></a-entity>
+<a-entity mixin="leaves" position="26 4.5 -18"></a-entity>
+<a-entity mixin="leaves" position="24 4.5 -20"></a-entity>
+<a-entity mixin="leaves" position="24 4.5 -16"></a-entity>
+<a-entity mixin="leaves" position="24 6.5 -18"></a-entity>
+<a-entity mixin="log" position="24 0.5 -18"></a-entity>
+<a-entity mixin="log" position="24 2.5 -18"></a-entity>
+<a-entity mixin="log" position="24 4.5 -18"></a-entity>
+
+<a-entity mixin="leaves" position="32 4.5 -10"></a-entity>
+<a-entity mixin="leaves" position="36 4.5 -10"></a-entity>
+<a-entity mixin="leaves" position="34 4.5 -12"></a-entity>
+<a-entity mixin="leaves" position="34 4.5 -8"></a-entity>
+<a-entity mixin="leaves" position="34 6.5 -10"></a-entity>
+<a-entity mixin="log" position="34 0.5 -10"></a-entity>
+<a-entity mixin="log" position="34 2.5 -10"></a-entity>
+<a-entity mixin="log" position="34 4.5 -10"></a-entity>
+
+<a-entity mixin="leaves" position="30 4.5 10"></a-entity>
+<a-entity mixin="leaves" position="34 4.5 10"></a-entity>
+<a-entity mixin="leaves" position="32 4.5 8"></a-entity>
+<a-entity mixin="leaves" position="32 4.5 12"></a-entity>
+<a-entity mixin="leaves" position="32 6.5 10"></a-entity>
+<a-entity mixin="log" position="32 0.5 10"></a-entity>
+<a-entity mixin="log" position="32 2.5 10"></a-entity>
+<a-entity mixin="log" position="32 4.5 10"></a-entity>
+
+<a-entity mixin="leaves" position="34 4.5 1"></a-entity>
+<a-entity mixin="leaves" position="38 4.5 1"></a-entity>
+<a-entity mixin="leaves" position="36 4.5 -1"></a-entity>
+<a-entity mixin="leaves" position="36 4.5 3"></a-entity>
+<a-entity mixin="leaves" position="36 6.5 1"></a-entity>
+<a-entity mixin="log" position="36 0.5 1"></a-entity>
+<a-entity mixin="log" position="36 2.5 1"></a-entity>
+<a-entity mixin="log" position="36 4.5 1"></a-entity>
+
+<!-- Left Trees -->
+<a-entity mixin="leaves" position="-20 8.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-20 6.5 -2"></a-entity>
+<a-entity mixin="leaves" position="-20 6.5 -6"></a-entity>
+<a-entity mixin="leaves" position="-18 6.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-22 6.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-16 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-18 4.5 -6"></a-entity>
+<a-entity mixin="leaves" position="-20 4.5 0"></a-entity>
+<a-entity mixin="leaves" position="-18 4.5 -2"></a-entity>
+<a-entity mixin="leaves" position="-18 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-22 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-20 4.5 -6"></a-entity>
+<a-entity mixin="leaves" position="-22 4.5 -2"></a-entity>
+<a-entity mixin="leaves" position="-24 4.5 -4"></a-entity>
+<a-entity mixin="leaves" position="-22 4.5 -6"></a-entity>
+<a-entity mixin="leaves" position="-20 4.5 -8"></a-entity>
+<a-entity mixin="leaves" position="-20 4.5 -2"></a-entity>
+<a-entity mixin="log" position="-20 0.5 -4"></a-entity>
+<a-entity mixin="log" position="-20 2.5 -4"></a-entity>
+<a-entity mixin="log" position="-20 4.5 -4"></a-entity>
+
+<a-entity mixin="leaves" position="-22 4.5 -18"></a-entity>
+<a-entity mixin="leaves" position="-26 4.5 -18"></a-entity>
+<a-entity mixin="leaves" position="-24 4.5 -20"></a-entity>
+<a-entity mixin="leaves" position="-24 4.5 -16"></a-entity>
+<a-entity mixin="leaves" position="-24 6.5 -18"></a-entity>
+<a-entity mixin="log" position="-24 0.5 -18"></a-entity>
+<a-entity mixin="log" position="-24 2.5 -18"></a-entity>
+<a-entity mixin="log" position="-24 4.5 -18"></a-entity>
+
+<a-entity mixin="leaves" position="-32 4.5 -10"></a-entity>
+<a-entity mixin="leaves" position="-36 4.5 -10"></a-entity>
+<a-entity mixin="leaves" position="-34 4.5 -12"></a-entity>
+<a-entity mixin="leaves" position="-34 4.5 -8"></a-entity>
+<a-entity mixin="leaves" position="-34 6.5 -10"></a-entity>
+<a-entity mixin="log" position="-34 0.5 -10"></a-entity>
+<a-entity mixin="log" position="-34 2.5 -10"></a-entity>
+<a-entity mixin="log" position="-34 4.5 -10"></a-entity>
+
+<a-entity mixin="leaves" position="-30 4.5 10"></a-entity>
+<a-entity mixin="leaves" position="-34 4.5 10"></a-entity>
+<a-entity mixin="leaves" position="-32 4.5 8"></a-entity>
+<a-entity mixin="leaves" position="-32 4.5 12"></a-entity>
+<a-entity mixin="leaves" position="-32 6.5 10"></a-entity>
+<a-entity mixin="log" position="-32 0.5 10"></a-entity>
+<a-entity mixin="log" position="-32 2.5 10"></a-entity>
+<a-entity mixin="log" position="-32 4.5 10"></a-entity>
+
+<a-entity mixin="leaves" position="-34 4.5 1"></a-entity>
+<a-entity mixin="leaves" position="-38 4.5 1"></a-entity>
+<a-entity mixin="leaves" position="-36 4.5 -1"></a-entity>
+<a-entity mixin="leaves" position="-36 4.5 3"></a-entity>
+<a-entity mixin="leaves" position="-36 6.5 1"></a-entity>
+<a-entity mixin="log" position="-36 0.5 1"></a-entity>
+<a-entity mixin="log" position="-36 2.5 1"></a-entity>
+<a-entity mixin="log" position="-36 4.5 1"></a-entity>
+
+<!-- Cobblestone Monument -->
+<a-entity mixin="cobblestone" position="12 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="12 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="12 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="8 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="8 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="8 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="4 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="4 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="4 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="0 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="0 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="0 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-4 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-4 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-4 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-8 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-8 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-8 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-12 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-12 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-12 4.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-16 0.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-16 2.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-16 4.5 54"></a-entity>
+
+<a-entity mixin="cobblestone" position="-16 0.5 52"></a-entity>
+<a-entity mixin="cobblestone" position="-16 2.5 52"></a-entity>
+<a-entity mixin="cobblestone" position="-16 0.5 50"></a-entity>
+
+<a-entity mixin="cobblestone" position="12 0.5 52"></a-entity>
+<a-entity mixin="cobblestone" position="12 2.5 52"></a-entity>
+<a-entity mixin="cobblestone" position="12 0.5 50"></a-entity>
+
+<a-entity mixin="cobblestone" position="12 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="10 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="8 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="6 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="4 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="2 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="0 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-2 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-4 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-6 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-8 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-10 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-12 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-14 6.5 54"></a-entity>
+<a-entity mixin="cobblestone" position="-16 6.5 54"></a-entity>
+
+<a-entity mixin="sand" position="-14 0.5 56"></a-entity>
+<a-entity mixin="sand" position="-14 2.5 56"></a-entity>
+<a-entity mixin="sand" position="-14 4.5 56"></a-entity>
+<a-entity mixin="sand" position="-10 0.5 56"></a-entity>
+<a-entity mixin="sand" position="-10 2.5 56"></a-entity>
+<a-entity mixin="sand" position="-10 4.5 56"></a-entity>
+<a-entity mixin="sand" position="-6 0.5 56"></a-entity>
+<a-entity mixin="sand" position="-6 2.5 56"></a-entity>
+<a-entity mixin="sand" position="-6 4.5 56"></a-entity>
+
+<a-entity mixin="sand" position="-2 0.5 56"></a-entity>
+<a-entity mixin="sand" position="-2 2.5 56"></a-entity>
+<a-entity mixin="sand" position="-2 4.5 56"></a-entity>
+<a-entity mixin="sand" position="2 0.5 56"></a-entity>
+<a-entity mixin="sand" position="2 2.5 56"></a-entity>
+<a-entity mixin="sand" position="2 4.5 56"></a-entity>
+<a-entity mixin="sand" position="6 0.5 56"></a-entity>
+<a-entity mixin="sand" position="6 2.5 56"></a-entity>
+<a-entity mixin="sand" position="6 4.5 56"></a-entity>
+<a-entity mixin="sand" position="10 0.5 56"></a-entity>
+<a-entity mixin="sand" position="10 2.5 56"></a-entity>
+<a-entity mixin="sand" position="10 4.5 56"></a-entity>
+
+<!-- Fencing -->
+<a-entity geometry="primitive: plane; height: 1; width: 15" position="-11.5 0 -3" material="shader: standard; transparent: true; side: double; src: url(images/fencing.png); repeat: 5 1"></a-entity>
+<a-entity geometry="primitive: plane; height: 1; width: 20" position="9 0 -3" material="shader: standard; transparent: true; side: double; src: url(images/fencing.png); repeat: 7 1"></a-entity>
+
+<!-- Fence Posts -->
+<a-entity mixin="post" position="-6 2.5 -10"></a-entity>
+<a-entity mixin="post" position="-2 2.5 -10"></a-entity>
+<a-entity mixin="post" position="-6 0.5 -10"></a-entity>
+<a-entity mixin="post" position="-2 0.5 -10"></a-entity>
+
+<!-- Other -->
+<a-entity mixin="post" position="14 0.5 12"></a-entity>
+<a-entity mixin="plank" position="6 0.5 12"></a-entity>
+<a-entity mixin="log" position="2 0.5 12"></a-entity>
+<a-entity mixin="sand" position="-2 0.5 12"></a-entity>
+<a-entity mixin="cobblestone" position="-6 0.5 12"></a-entity>
+<a-entity mixin="leaves" position="-14 0.5 12"></a-entity>
+<a-entity mixin="box" position="-10 0.5 12" material="src: url(images/dirt.jpg)"></a-entity>
+<a-entity mixin="box" position="10 0.5 12" material="src: url(images/diamond.png)"></a-entity>
+
+<a-entity geometry=" primitive: plane; height: 2; width: 2" position="5 0.5 -2" material="shader: standard; transparent: true; side: double; src: url(images/sign.png)"></a-entity>
+<a-entity geometry=" primitive: plane; height: 2; width: 2" position="6 0.5 -19" material="shader: standard; transparent: true; side: double; src: url(images/sword.png)"></a-entity>
+<a-entity geometry=" primitive: plane; height: 3; width: 2" position="-20 1 -20" material="shader: standard; transparent: true; side: double; src: url(images/creeper.png)"></a-entity>
+<a-entity geometry=" primitive: plane; height: 1.5; width: 1.5" position="0 0.3 -6" material="shader: standard; transparent: true; side: double; src: url(images/pig.png)"></a-entity>
+<a-entity geometry=" primitive: plane; height: 4; width: 2" position="-4 1.5 -12" material="shader: standard; transparent: true; side: double; src: url(images/door.png)"></a-entity>
+<a-entity geometry="primitive: plane; height: 500; width: 500" position="0 -0.5 0" rotation="-90 0 0" material="shader: flat; src: url(images/grass.png); repeat: 300 300"></a-entity>
+
+      <!-- Lighting and background -->
+      <a-sky color="#a9c8e3"></a-sky>
+    </a-scene>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56782327-23', 'auto');
+  ga('send', 'pageview');
+
+</script>
+ 
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../aframe/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+</head>
+<body>
+  <a-scene stats vr-mode-ui="enabled: false;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam; debug: false;">
+         <a-assets>
+  <a-mixin id="box" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard"></a-mixin>
+  <a-mixin id="log" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/wood-log.png);"></a-mixin>
+  <a-mixin id="leaves" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/leaves.png);"></a-mixin>
+  <a-mixin id="sand" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/sand.png);"></a-mixin>
+  <a-mixin id="cobblestone" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/cobblestone.png);"></a-mixin>
+  <a-mixin id="plank" geometry="primitive: box; depth: 2; height: 2; width: 2" material="shader: standard; src: url(images/wooden-plank.png);"></a-mixin>
+  <a-mixin id="post" geometry="primitive: box; depth: 0.5; height: 2; width: 0.5" material="shader: standard; src: url(images/fence-post.png)"></a-mixin>
+ </a-assets>
+<a-marker preset="hiro">
+  <a-entity scale="0.05 0.05 0.05" rotation="0 0 0">
+
+<!-- Sun -->
+<a-entity geometry=" primitive: plane; height: 9; width: 9" position="20 55 -50" material="shader: standard; transparent: true; src: images/sun.png">
+</a-entity>
+  
+<!-- Clouds -->
+<a-entity geometry="primitive: box; depth: 6; height: 1; width: 6" position="-65 20 -50" material="shader: standard; opacity: 0.8; color: #fff" animation="property: position;  from: -65 20 -50; to: 60 10 -70; easing: linear; dur: 100000; loop: true"></a-entity>
+
+<a-entity geometry="primitive: box; depth: 2; height: 1; width: 7" position="-45 20 -20" material="shader: standard; opacity: 0.85; color: #fff" animation="property: position;  to: 80 10 -50; easing: linear; dur: 100000; loop: true"></a-entity>
+
+<a-entity geometry="primitive: box; depth: 3; height: 1; width: 3" position="0 20 -10" material="shader: standard; opacity: 0.8; color: #fff" animation="property: position;  to: 100 10 -10; easing: linear; dur: 100000; loop: true"></a-entity>
+
+<a-entity geometry="primitive: box; depth: 5; height: 1; width: 3" position="-15 20 -20" material="shader: standard; opacity: 0.6; color: #fff" animation="property: position;  to: 100 10 -20; easing: linear; dur: 100000; loop: true"></a-entity>
+
+<a-entity geometry="primitive: box; depth: 3; height: 1; width: 7" position="20 20 -40" material="shader: standard; opacity: 0.7; color: #fff" animation="property: position;  to: 110 20 -35; easing: linear; dur: 100000; loop: true"></a-entity>
+   
+
+<a-entity geometry="primitive: box; depth: 7; height: 1; width: 3" position="-25 20 -30" material="shader: standard; opacity: 0.9; color: #fff" animation="property: position;  to: 110 20 -45; easing: linear; dur: 100000; loop: true"></a-entity>
+
+
+<a-entity mixin="leaves" position="-32 -6.5 25"></a-entity>
+<a-entity mixin="leaves" position="-36 -6.5 25"></a-entity>
+<a-entity mixin="leaves" position="-34 -6.5 27"></a-entity>
+<a-entity mixin="leaves" position="-34 -6.5 23"></a-entity>
+<a-entity mixin="leaves" position="-34 -4.5 25"></a-entity>
+<a-entity mixin="log" position="-34 -10.5 25"></a-entity>
+<a-entity mixin="log" position="-34 -8.5 25"></a-entity>
+<a-entity mixin="log" position="-34 -6.5 25"></a-entity>
+
+<a-entity mixin="leaves" position="-7 -6.5 25"></a-entity>
+<a-entity mixin="leaves" position="-11 -6.5 25"></a-entity>
+<a-entity mixin="leaves" position="-9 -6.5 27"></a-entity>
+<a-entity mixin="leaves" position="-9 -6.5 23"></a-entity>
+<a-entity mixin="leaves" position="-9 -4.5 25"></a-entity>
+<a-entity mixin="log" position="-9 -10.5 25"></a-entity>
+<a-entity mixin="log" position="-9 -8.5 25"></a-entity>
+<a-entity mixin="log" position="-9 -6.5 25"></a-entity>
+
+<a-entity mixin="leaves" position="-7 -6.5 10"></a-entity>
+<a-entity mixin="leaves" position="-11 -6.5 10"></a-entity>
+<a-entity mixin="leaves" position="-9 -6.5 12"></a-entity>
+<a-entity mixin="leaves" position="-9 -6.5 8"></a-entity>
+<a-entity mixin="leaves" position="-9 -4.5 10"></a-entity>
+<a-entity mixin="log" position="-9 -10.5 10"></a-entity>
+<a-entity mixin="log" position="-9 -8.5 10"></a-entity>
+<a-entity mixin="log" position="-9 -6.5 10"></a-entity>
+
+<a-entity mixin="leaves" position="-30 -6.5 10"></a-entity>
+<a-entity mixin="leaves" position="-34 -6.5 10"></a-entity>
+<a-entity mixin="leaves" position="-32 -6.5 8"></a-entity>
+<a-entity mixin="leaves" position="-32 -6.5 12"></a-entity>
+<a-entity mixin="leaves" position="-32 -6.5 10"></a-entity>
+<a-entity mixin="log" position="-32 -10.5 10"></a-entity>
+<a-entity mixin="log" position="-32 -8.5 10"></a-entity>
+<a-entity mixin="log" position="-32 -6.5 10"></a-entity>  
+
+    
+    <a-entity geometry="primitive: example; vertices: 21 -30, 21 -17, -14 -17, -23 -55, 6 -57, 6 -52, -17 -52, -11 -21, 17 -21, 17 -30" rotation="90 0 0" material="shader: flat; src: images/brics.png; repeat: 2 2" position="-20 0.5 12"></a-entity>
+    <a-entity geometry="primitive: plane; height: 150; width: 150" position="0 -10 0" rotation="-90 0 0" material="shader: flat; src: url(images/grass.png); repeat: 300 300"></a-entity>
+    </a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+
+
+
+
+
+
+    <script>
+AFRAME.registerGeometry('example', {
+  schema: {
+    vertices: {
+      default: ['-10 0', '-10 0', '10 0', '10 0', '10 0', '10 0', '10 0', '10 0', '10 0', '10 0'],
+    }
+  },
+
+  init: function (data) {
+         const pointsArray = new Array();
+     data.vertices.map(function (vertex) {
+     var points = vertex.split(' ').map(function(x){return parseInt(x);});
+     pointsArray.push(new THREE.Vector3(points[0], points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8], points[9], points[10]));
+     });
+
+    // Create a shape based on the vertices
+    const shape = new THREE.Shape(pointsArray);
+
+    // Set extrusion settings
+    const extrudeSettings = {
+      depth: 10,  // Extrusion depth
+      bevelEnabled: false,  // Disable bevel
+    };    
+
+    var geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+     this.geometry = geometry;
+  }
+});
+    </script>
+  </a-scene>
+</body>
+</html>
