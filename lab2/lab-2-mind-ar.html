@@ -106,10 +106,19 @@ const start = async() => {
         [-7, -6.5, 10], [-11, -6.5, 10], [-9, -6.5, 12], [-9, -4.5, 10],
         [-30, -6.5, 10], [-34, -6.5, 10], [-32, -6.5, 8], [-32, -6.5, 12], [-32, -6.5, 10]
     ];
-
+// Параметри для макету
     const pointsArray = [
         [21, -30], [21, -17], [-14, -17], [-23, -55], [6, -57], [6, -52], [-17, -52], [-11, -21], [17, -21], [17, -30]
     ];
+    const pointsArray1 = [
+    [21, -30], [21, -17], [-14, -17], [-23, -55], [6, -57], [6, -52], [-17, -52], [-11, -21], [17, -21], [17, -30]
+];
+
+const scaleFactor = 30; // число, на яке ви хочете поділити
+
+const PointsArray = pointsArray1.map(point => {
+    return [point[0] / scaleFactor, point[1] / scaleFactor];
+});
 
     // Створення кубів та листя
   //  leavesPositions.forEach(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
@@ -132,6 +141,8 @@ const start = async() => {
     const plane = createObject(new THREE.PlaneGeometry(500, 500), groundMaterial, [0, -10, -50]);
 
     plane.rotation.x = Math.PI / 2;
+    setScale(plane);
+    anchor.group.add(plane);
 
         // Створення фігури
     const shape = new THREE.Shape();
@@ -158,16 +169,27 @@ const start = async() => {
     // Створення та розміщення об'єкта
     const mesh = createObject(geometry, bricksmaterial, [-20, 0.5, 12]);
     mesh.rotation.x = Math.PI / 2;
+    setScale(mesh); 
     scene.add(mesh);
 
     // Додавання світла
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // м'яке світло
     scene.add(ambientLight);
 
+
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
     directionalLight.position.set(0, 1, 0); // напрям зверху
     scene.add(directionalLight);
 
+    const clouds = [];
+        for (let i = 0; i < 5; i++) {
+            const cloud = createObject(new THREE.BoxGeometry(10, 5, 5), cloudMaterial, [-50 + i * 20, 25, -100]);
+            clouds.push(cloud);
+           // setScale(cloud);
+            anchor.group.add(cloud); // Додати кожну хмару до групи анкора
+    };
+
+   // setScale(clouds);
 
  
     // Функція анімації хмар
@@ -187,7 +209,7 @@ const start = async() => {
             renderer.render(scene, camera);
         });
 
-        anchor.group.add(plane, mesh);
+        anchor.group.add(mesh);
 
 
     await mindarThree.start();
@@ -198,8 +220,10 @@ const start = async() => {
 
     function setScale(object)
 {
-    object.scale.set(0.0025, 0.0025, 0.0025);
-}
+    object.scale.set(0.03, 0.03, 0.03);
+    //mesh.scale.set(0.1, 0.1, 0.1)
+};
+
 
 
     start();
