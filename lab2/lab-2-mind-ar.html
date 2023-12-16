@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Лабораторна робота №2 AR</title>
-        <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>v
+    <title></title>
     <style>
-        body { margin: 0; }
-        canvas { display: block; }
-
+        html, body {
+            position: relative;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
     </style>
+    <script type="importmap">
+    {
+      "imports": {
+    "three": "https://unpkg.com/three@0.153.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.153.0/examples/jsm/",
+    "mindar-image-three":"https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-three.prod.js"
+      }
+    }
+    </script>
 </head>
 <body>
-    <script type="module">
-        import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+<script type="module">
+      import * as THREE from 'three';
+      import { MindARThree } from 'mindar-image-three';
 
-        // Ваш код для ініціалізації MindAR та Three.js
-        // ...
-
-        const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-            container: document.querySelector("#container"),
+const start = async() => {
+          const mindarThree = new MindARThree({
+            container: document.body,
             imageTargetSrc: "/lab1/Coat_Kryvyy_Rih.mind",
-            maxTrack: 2,
-            uiLoading: "no",
-            uiScanning: "yes",
+            maxTrack: 3,
+            uiLoading: "no", 
+            uiScanning: "yes", 
             uiError: "yes"
-        });
+            });
+    const {scene, camera, renderer} = mindarThree;
+    const anchor = mindarThree.addAnchor(0);
 
-        mindarThree.init().then(() => {
-            const {renderer, scene, camera} = mindarThree;
-            const anchor = mindarThree.addAnchor(0);
 
-    // Створення сцени
-    const scene = new THREE.Scene();
 
     // Створення TextureLoader
     const loader = new THREE.TextureLoader();
@@ -107,11 +112,25 @@
     ];
 
     // Створення кубів та листя
-    cubePositions.forEach(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), woodMaterial, pos));
-    leavesPositions.forEach(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
+  //  leavesPositions.forEach(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
+        const leaves = cubePositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
+        leaves.forEach(obj => {
+            setScale(obj);
+             anchor.group.add(obj);
+            
+        });
+
+
+    const log = cubePositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), woodMaterial, pos));
+        log.forEach(obj => {
+            setScale(obj);
+             anchor.group.add(obj);
+           
+        });
 
     // Додавання площини
     const plane = createObject(new THREE.PlaneGeometry(500, 500), groundMaterial, [0, -10, -50]);
+
     plane.rotation.x = Math.PI / 2;
 
         // Створення фігури
@@ -141,22 +160,16 @@
     mesh.rotation.x = Math.PI / 2;
     scene.add(mesh);
 
+    // Додавання світла
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // м'яке світло
+    scene.add(ambientLight);
 
-        // Додавання світла
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // м'яке світло
-        scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(0, 1, 0); // напрям зверху
+    scene.add(directionalLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        directionalLight.position.set(0, 1, 0); // напрям зверху
-        scene.add(directionalLight);
 
-    // Створення хмар
-    const clouds = [];
-    for (let i = 0; i < 5; i++) {
-        const cloud = createObject(new THREE.BoxGeometry(10, 5, 5), cloudMaterial, [-50 + i * 20, 25, -100]);
-        clouds.push(cloud);
-    }
-
+ 
     // Функція анімації хмар
     function animateClouds() {
         clouds.forEach(cloud => {
@@ -167,13 +180,29 @@
         });
     }
 
-         function animate() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
-        }
+        await mindarThree.start();
 
-        animate();
-    });
-    </script>
+        renderer.setAnimationLoop(() => {
+
+            renderer.render(scene, camera);
+        });
+
+        anchor.group.add(plane, mesh);
+
+
+    await mindarThree.start();
+
+
+
+    }
+
+    function setScale(object)
+{
+    object.scale.set(0.0025, 0.0025, 0.0025);
+}
+
+
+    start();
+</script>
 </body>
 </html>
