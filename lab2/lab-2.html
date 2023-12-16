@@ -18,28 +18,46 @@
 </script>
 <script type="module">
     import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import * as THREE from '../libs/three/three.module.min.js';
 
+    import { MindARThree } from '../mindar/mindar-image-three.prod.js';
 
-    // Створення сцени, камери та рендерера
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    document.addEventListener("DOMContentLoaded", () => {
+        const start = async() =>
+        {
+            console.log("meow")
+            await createAltModel();
+        }
+        start();
+    });
 
-    const controls = new OrbitControls( camera, renderer.domElement );
+    async function createAltModel()
+    {
+        // Создаем сцену
+        // Создаем экземпляр MindARThree
+        const mindarThree = new MindARThree({
+            container: document.body,
+            imageTargetSrc: '../assets/pattern-ruther_ford.mind',
+            uiLoading: "no",
+            uiScanning: "yes",
+            uiError: "yes",
+            debug: "yes",
+        });
+
+        const {scene, camera, renderer } = mindarThree;
+
+        const anchor = mindarThree.addAnchor(0);
+
 
     // Створення TextureLoader
     const loader = new THREE.TextureLoader();
 
     // Завантаження текстур
-    const leavesTexture = loader.load('../lab1/images/leaves.png');
-    const woodTexture = loader.load('../lab1/images/wood-log.png');
-    const groundTexture = loader.load('../lab1/images/grass.png');
-    const skyTexture = loader.load('../lab1/images/leaves.png');
-    const cloudTexture = loader.load('../lab1/images/leaves.png');
+    const leavesTexture = loader.load('/lab1/images/leaves.png');
+    const woodTexture = loader.load('/lab1/images/wood-log.png');
+    const groundTexture = loader.load('/lab1/images/grass.png');
+    const skyTexture = loader.load('/lab1/images/leaves.png');
+    const cloudTexture = loader.load('/lab1/images/leaves.png');
 
     groundTexture.wrapS = THREE.RepeatWrapping;
     groundTexture.wrapT = THREE.RepeatWrapping;

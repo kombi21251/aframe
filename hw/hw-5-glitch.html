@@ -4,10 +4,11 @@
         <title>A-Frame Starter Kit - Mini Animated Planetarium</title>
         <meta name="description" content="Build your own planetarium with A-frame">
         <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
+        <!--<script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>-->
+        <script src="solar_system.js"></script>
 
         <!-- let's add the animation and orbit controls components -->
-        <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
+        <!-- <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>-->
         <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
     </head>
 
@@ -89,7 +90,7 @@
             <!-- our basic planets, we're going to wrap them so we can apply
             orbits to them and also give them rotation-->
             <a-entity id="orbit-mercury" mixin="orbit" animation="dur: 20000;">
-                <a-sphere id="mercury" position="0 0 6" radius=".4" src="#mercury-texture" mixin="orbit"></a-sphere>
+                <a-sphere id="mercury" position="0 0 6" radius=".4" src="#mercury-texture" mixin="orbit" ></a-sphere>
             </a-entity>
 
             <a-entity id="orbit-venus" mixin="orbit">
@@ -111,7 +112,7 @@
 
             <!--there are two orbits here- the earth itself and the earth around the moon-->
             <a-entity id="orbit-earth" mixin="orbit" animation="dur: 30000;">
-                <a-entity id="earth-and-moon" position="0 0 10.5">
+                <a-entity id="earth-and-moon" position="0 0 10.5" planet="dist: 14000; mass: 6e24; T: 365; name: Earth">
                     <a-entity id="earth-container">
                         <a-sphere position="0 0 0" radius=".5" id="earth" src="#earth-texture" mixin="rotation"></a-sphere>
                         <a-entity id="moon-container" mixin="orbit">

@@ -25,15 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const start = async() => {
 	      const mindarThree = new MindARThree({
 			container: document.body,
-			imageTargetSrc: "cosmic_ship.mind",
-			maxTrack: 2,
-			uiLoading: "no", 
-			uiScanning: "yes", 
-			uiError: "yes"
-      		},
-      		{
-			container: document.body,
-			imageTargetSrc: "houdini.mind",
+			imageTargetSrc: "cosmic_ship_and_houdini.mind",
 			maxTrack: 2,
 			uiLoading: "no", 
 			uiScanning: "yes", 
