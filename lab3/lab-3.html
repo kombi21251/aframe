@@ -43,19 +43,19 @@
             const loader = new THREE.TextureLoader();
 
             // Завантаження текстур
-            const leavesTexture = loader.load('/lab1/images/leaves.png');
-            const woodTexture = loader.load('/lab1/images/wood-log.png');
-            const groundTexture = loader.load('/lab1/images/grass.png');
-            const skyTexture = loader.load('/lab1/images/leaves.png');
-            const cloudTexture = loader.load('/lab1/images/leaves.png');
+            const leavesTexture = loader.load('../lab1/images/leaves.png');
+            const woodTexture = loader.load('../lab1/images/wood-log.png');
+            const groundTexture = loader.load('../lab1/images/grass.png');
+            const skyTexture = loader.load('../lab1/images/leaves.png');
+            const cloudTexture = loader.load('../lab1/images/leaves.png');
 
             groundTexture.wrapS = THREE.RepeatWrapping;
             groundTexture.wrapT = THREE.RepeatWrapping;
             groundTexture.repeat.set(20, 20);
 
-            const BricksBaseColorTexture = loader.load('/lab2/brick_diffuse.jpg');
-            const BricksNormalTexture = loader.load('/lab2/brick_bump.jpg');
-            const BricksRoughnessTexture = loader.load('/lab2/brick_roughness.jpg');
+            const BricksBaseColorTexture = loader.load('../lab2/brick_diffuse.jpg');
+            const BricksNormalTexture = loader.load('../lab2/brick_bump.jpg');
+            const BricksRoughnessTexture = loader.load('../lab2/brick_roughness.jpg');
 
             BricksBaseColorTexture.wrapS = THREE.RepeatWrapping;
             BricksBaseColorTexture.wrapT = THREE.RepeatWrapping;
