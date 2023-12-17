@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Лабораторна робота 3 WebXR</title>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.159.0/build/three.module.js';
+        import { ARButton } from 'https://unpkg.com/three@0.159.0/examples/jsm/webxr/ARButton.js';
+
+        let camera, scene, renderer;
+
+        init();
+        animate();
+
+        function init() {
+            const container = document.createElement('div');
+            document.body.appendChild(container);
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 180);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.xr.enabled = true;
+            container.appendChild(renderer.domElement);
+
+            const button = ARButton.createButton(renderer);
+            document.body.appendChild(button);
+
+            // Додавання світла
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            directionalLight.position.set(0, 1, 0);
+            scene.add(directionalLight);
+
+            // Створення TextureLoader
+            const loader = new THREE.TextureLoader();
+
+            // Завантаження текстур
+            const leavesTexture = loader.load('/lab1/images/leaves.png');
+            const woodTexture = loader.load('/lab1/images/wood-log.png');
+            const groundTexture = loader.load('/lab1/images/grass.png');
+            const skyTexture = loader.load('/lab1/images/leaves.png');
+            const cloudTexture = loader.load('/lab1/images/leaves.png');
+
+            groundTexture.wrapS = THREE.RepeatWrapping;
+            groundTexture.wrapT = THREE.RepeatWrapping;
+            groundTexture.repeat.set(20, 20);
+
+            const BricksBaseColorTexture = loader.load('/lab2/brick_diffuse.jpg');
+            const BricksNormalTexture = loader.load('/lab2/brick_bump.jpg');
+            const BricksRoughnessTexture = loader.load('/lab2/brick_roughness.jpg');
+
+            BricksBaseColorTexture.wrapS = THREE.RepeatWrapping;
+            BricksBaseColorTexture.wrapT = THREE.RepeatWrapping;
+            BricksNormalTexture.wrapS = THREE.RepeatWrapping;
+            BricksNormalTexture.wrapT = THREE.RepeatWrapping;
+            BricksRoughnessTexture.wrapS = THREE.RepeatWrapping;
+            BricksRoughnessTexture.wrapT = THREE.RepeatWrapping;
+            var BricksRepeat = 0.05;
+
+            BricksBaseColorTexture.repeat.set(BricksRepeat, BricksRepeat);
+            BricksNormalTexture.repeat.set(BricksRepeat, BricksRepeat);
+            BricksRoughnessTexture.repeat.set(BricksRepeat, BricksRepeat);
+
+            // Функція для створення об'єкта
+            function createObject(geometry, material, position) {
+                const object = new THREE.Mesh(geometry, material);
+                object.position.set(...position);
+                scene.add(object);
+                return object;
+            }
+
+            // Матеріали з текстурами
+            const leavesMaterial = new THREE.MeshBasicMaterial({ map: leavesTexture });
+            const woodMaterial = new THREE.MeshBasicMaterial({ map: woodTexture });
+            const groundMaterial = new THREE.MeshBasicMaterial({ map: groundTexture, side: THREE.DoubleSide });
+            const skyMaterial = new THREE.MeshBasicMaterial({ color: 0x87ceeb, side: THREE.DoubleSide });
+            const cloudMaterial = new THREE.MeshBasicMaterial({ color: 0x99999, side: THREE.DoubleSide });
+
+            // Додавання площини
+            const plane = createObject(new THREE.PlaneGeometry(70, 70), groundMaterial, [-10, -10, -10]);
+            plane.rotation.x = Math.PI / 2;
+
+            // Позиції колоди
+            const cubePositions = [
+                [-34, -10.5, 25], [-34, -8.5, 25], [-34, -6.5, 25],
+                [-9, -10.5, 25], [-9, -8.5, 25], [-9, -6.5, 25],
+                [-9, -10.5, 10], [-9, -8.5, 10], [-9, -6.5, 10],
+                [-32, -10.5, 10], [-32, -8.5, 10], [-32, -6.5, 10]
+            ];
+
+            // Позиції листя
+            const leavesPositions = [
+                [-32, -6.5, 25], [-36, -6.5, 25], [-34, -6.5, 27], [-34, -6.5, 23], [-34, -4.5, 25],
+                [-7, -6.5, 25], [-11, -6.5, 25], [-9, -6.5, 27], [-9, -6.5, 23], [-9, -4.5, 25],
+                [-7, -6.5, 10], [-11, -6.5, 10], [-9, -6.5, 12], [-9, -4.5, 10],
+                [-30, -6.5, 10], [-34, -6.5, 10], [-32, -6.5, 8], [-32, -6.5, 12], [-32, -6.5, 10]
+            ];
+
+            // Створення кубів та листя
+            const leaves = leavesPositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
+            const log = cubePositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), woodMaterial, pos));
+
+            // Параметри для макету
+            const pointsArray = [
+                [21, -30], [21, -17], [-14, -17], [-23, -55], [6, -57], [6, -52], [-17, -52], [-11, -21], [17, -21], [17, -30]
+            ];
+
+            // Створення фігури
+            const shape = new THREE.Shape();
+            shape.moveTo(pointsArray[0][0], pointsArray[0][1]);
+            for (let i = 1; i < pointsArray.length; i++) {
+                shape.lineTo(pointsArray[i][0], pointsArray[i][1]);
+            }
+
+            // Параметри екструзії
+            const extrudeSettings = {
+                depth: 10,
+                bevelEnabled: false,
+            };
+
+            // Створення екструдованої геометрії
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+            const bricksmaterial = new THREE.MeshStandardMaterial({
+                map: BricksBaseColorTexture,
+                normalMap: BricksNormalTexture,
+                roughnessMap: BricksRoughnessTexture
+            });
+
+            // Створення та розміщення об'єкта
+            const mesh = createObject(geometry, bricksmaterial, [-20, 0.5, 1]);
+            mesh.rotation.x = Math.PI / 2;
+            scene.add(mesh);
+
+            // Створення хмар
+            const clouds = [];
+            for (let i = 0; i < 5; i++) {
+                const cloud = createObject(new THREE.BoxGeometry(10, 5, 5), cloudMaterial, [-50 + i * 20, 25, -100]);
+                clouds.push(cloud);
+                scene.add(cloud); // Додавання кожної хмари до сцени
+            }
+
+            // Функція анімації хмар
+            function animateClouds() {
+                clouds.forEach(cloud => {
+                    cloud.position.x += 0.1;
+                    if (cloud.position.x > 50) {
+                        cloud.position.x = -50;
+                    }
+                });
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            renderer.setAnimationLoop(render);
+            animateClouds();
+        }
+
+        function render() {
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>

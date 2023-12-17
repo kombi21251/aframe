@@ -30,7 +30,7 @@ const start = async() => {
           const mindarThree = new MindARThree({
             container: document.body,
             imageTargetSrc: "/lab1/Coat_Kryvyy_Rih.mind",
-            maxTrack: 3,
+            maxTrack: 1,
             uiLoading: "no", 
             uiScanning: "yes", 
             uiError: "yes"
@@ -110,39 +110,20 @@ const start = async() => {
     const pointsArray = [
         [21, -30], [21, -17], [-14, -17], [-23, -55], [6, -57], [6, -52], [-17, -52], [-11, -21], [17, -21], [17, -30]
     ];
-    const pointsArray1 = [
-    [21, -30], [21, -17], [-14, -17], [-23, -55], [6, -57], [6, -52], [-17, -52], [-11, -21], [17, -21], [17, -30]
-];
-
-const scaleFactor = 30; // число, на яке ви хочете поділити
-
-const PointsArray = pointsArray1.map(point => {
-    return [point[0] / scaleFactor, point[1] / scaleFactor];
-});
 
     // Створення кубів та листя
-  //  leavesPositions.forEach(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
-        const leaves = cubePositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
-        leaves.forEach(obj => {
-            setScale(obj);
-             anchor.group.add(obj);
-            
-        });
+    const leaves = leavesPositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), leavesMaterial, pos));
+
 
 
     const log = cubePositions.map(pos => createObject(new THREE.BoxGeometry(2.5, 2.5, 2.5), woodMaterial, pos));
-        log.forEach(obj => {
-            setScale(obj);
-             anchor.group.add(obj);
-           
-        });
 
     // Додавання площини
-    const plane = createObject(new THREE.PlaneGeometry(500, 500), groundMaterial, [0, -10, -50]);
+    const plane = createObject(new THREE.PlaneGeometry(70, 70), groundMaterial, [-10, -10, -10]);
 
     plane.rotation.x = Math.PI / 2;
-    setScale(plane);
-    anchor.group.add(plane);
+//    setScale(plane);
+//    anchor.group.add(plane);
 
         // Створення фігури
     const shape = new THREE.Shape();
@@ -169,7 +150,7 @@ const PointsArray = pointsArray1.map(point => {
     // Створення та розміщення об'єкта
     const mesh = createObject(geometry, bricksmaterial, [-20, 0.5, 12]);
     mesh.rotation.x = Math.PI / 2;
-    setScale(mesh); 
+//    setScale(mesh); 
     scene.add(mesh);
 
     // Додавання світла
@@ -186,7 +167,7 @@ const PointsArray = pointsArray1.map(point => {
             const cloud = createObject(new THREE.BoxGeometry(10, 5, 5), cloudMaterial, [-50 + i * 20, 25, -100]);
             clouds.push(cloud);
            // setScale(cloud);
-            anchor.group.add(cloud); // Додати кожну хмару до групи анкора
+  //          anchor.group.add(cloud); // Додати кожну хмару до групи анкора
     };
 
    // setScale(clouds);
@@ -202,6 +183,22 @@ const PointsArray = pointsArray1.map(point => {
         });
     }
 
+
+    const sceneGroup = new THREE.Group();
+
+// Додавання об'єктів до групи
+leaves.forEach(leaf => sceneGroup.add(leaf));
+log.forEach(logItem => sceneGroup.add(logItem));
+clouds.forEach(cloud => sceneGroup.add(cloud));
+sceneGroup.add(mesh);
+sceneGroup.add(plane);
+
+// Масштабування групи
+sceneGroup.scale.set(0.015, 0.015, 0.015);
+
+// Додавання групи до анкора
+anchor.group.add(sceneGroup);
+
         await mindarThree.start();
 
         renderer.setAnimationLoop(() => {
@@ -209,7 +206,7 @@ const PointsArray = pointsArray1.map(point => {
             renderer.render(scene, camera);
         });
 
-        anchor.group.add(mesh);
+//        anchor.group.add(mesh);
 
 
     await mindarThree.start();
@@ -218,11 +215,11 @@ const PointsArray = pointsArray1.map(point => {
 
     }
 
-    function setScale(object)
-{
-    object.scale.set(0.03, 0.03, 0.03);
+//    function setScale(object)
+//{
+//    object.scale.set(0.03, 0.03, 0.03);
     //mesh.scale.set(0.1, 0.1, 0.1)
-};
+//};
 
 
 
