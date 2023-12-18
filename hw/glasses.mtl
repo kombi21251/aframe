@@ -1,0 +1,17 @@
+# Blender MTL File: 'glasses.blend'
+# Material Count: 1
+
+newmtl DefaultMaterial
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 0.600000 0.600000 0.600000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump \\glasses_material\\glasses_DefaultMaterial_Normal.png
+map_Kd \\glasses_material\\glasses_DefaultMaterial_BaseColor.png
+map_Ns \\glasses_material\\glasses_DefaultMaterial_Roughness.png
+map_d \\glasses_material\\glasses_DefaultMaterial_BaseColor.png
+refl \\glasses_material\\glasses_DefaultMaterial_Metallic.png
