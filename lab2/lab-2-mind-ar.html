@@ -29,7 +29,7 @@
 const start = async() => {
           const mindarThree = new MindARThree({
             container: document.body,
-            imageTargetSrc: "/lab1/Coat_Kryvyy_Rih.mind",
+            imageTargetSrc: "../lab1/Coat_Kryvyy_Rih.mind",
             maxTrack: 1,
             uiLoading: "no", 
             uiScanning: "yes", 
@@ -44,11 +44,11 @@ const start = async() => {
     const loader = new THREE.TextureLoader();
 
     // Завантаження текстур
-    const leavesTexture = loader.load('/lab1/images/leaves.png');
-    const woodTexture = loader.load('/lab1/images/wood-log.png');
-    const groundTexture = loader.load('/lab1/images/grass.png');
-    const skyTexture = loader.load('/lab1/images/leaves.png');
-    const cloudTexture = loader.load('/lab1/images/leaves.png');
+    const leavesTexture = loader.load('../lab1/images/leaves.png');
+    const woodTexture = loader.load('../lab1/images/wood-log.png');
+    const groundTexture = loader.load('../lab1/images/grass.png');
+    const skyTexture = loader.load('../lab1/images/leaves.png');
+    const cloudTexture = loader.load('../lab1/images/leaves.png');
 
     groundTexture.wrapS = THREE.RepeatWrapping;
     groundTexture.wrapT = THREE.RepeatWrapping;
